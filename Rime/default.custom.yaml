@@ -1,0 +1,53 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.11.1
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Tue Jun  5 12:55:24 2018"
+  rime_version: 1.3.0
+patch:
+  menu:
+    # alternative_select_keys: "0123456789"	#重碼選擇鍵，如沒有寫-預設 ctrl+123456789
+    page_size: 6	#選單 每頁 顯示 個數
+  ascii_composer:
+    good_old_caps_lock: true
+    switch_key: {Caps_Lock: clear, Control_L: noop, Control_R: noop, Eisu_toggle: clear, Shift_L: commit_code, Shift_R: commit_code}
+  schema_list:
+    - {schema: liur}
+    # - {schema: liur_Trad}
+  switcher:
+    abbreviate_options: false
+    caption: "〔方案選單〕"
+    fold_options: false
+    hotkeys: ["Control+grave", "Control+Shift+grave"]
+  key_binder:
+    bindings:
+    # ↓ 以下2條爲空碼時按空格鍵清空輸入碼（首先需要關閉碼表輸入法連打，
+    # ↓ 即在輸入方案配置中設置enable_sentence: false）
+    - { when: composing, accept: space, send: Escape }
+    - { when: has_menu, accept: space, send: space }
+    # - { when: has_menu, accept: comma, send: comma }	#輸入,
+    # - { when: has_menu, accept: minus, send: minus }		# 輸入-
+    # - { when: has_menu, accept: equal, send: equal }		# 輸入=
+    - { accept: period, send: period, when: has_menu }		# 輸入.
+    - { accept: "Control+period", toggle: simplification, when: always }	#進行簡繁切換
+    - { accept: "Control+apostrophe", toggle: liu_w2c, when: always }	#顯示同音字
+    - { accept: "Control+slash", toggle: extended_charset, when: always}
+    - { accept: "Shift+space", toggle: full_shape, when: always}
+    # Emacs style
+    - { when: composing, accept: Control+p, send: Up }
+    - { when: composing, accept: Control+n, send: Down }
+    - { when: composing, accept: Control+b, send: Left }
+    - { when: composing, accept: Control+f, send: Right }
+    - { when: composing, accept: Control+a, send: Home }
+    - { when: composing, accept: Control+e, send: End }
+    - { when: composing, accept: Control+d, send: Delete }
+    - { when: composing, accept: Control+k, send: Shift+Delete }
+    - { when: composing, accept: Control+h, send: BackSpace }
+    - { when: composing, accept: Control+g, send: Escape }
+    - { when: composing, accept: Control+bracketleft, send: Escape }
+    - { when: composing, accept: Alt+v, send: Page_Up }
+    - { when: composing, accept: Control+v, send: Page_Down }
+    # move by word
+    - { when: composing, accept: ISO_Left_Tab, send: Shift+Left }
+    - { when: composing, accept: Shift+Tab, send: Shift+Left }
+    - { when: composing, accept: Tab, send: Shift+Right }

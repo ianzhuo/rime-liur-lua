@@ -1,0 +1,223 @@
+#錯誤查看%TEMP%\rime.weasel
+# Rime schema settings
+# encoding: utf-8
+#
+schema:
+  schema_id: liur
+  name: 蝦米輸入法
+  version: "20181227"
+  author:
+    - 制作人
+  description: |
+    蝦米-拼音-注音反查輸入法
+  dependencies:
+    - luna_pinyin
+    - bopomofo_tw
+switches:
+  - name: ascii_mode
+    reset: 0
+    # states: [ 中文, 英文 ]
+  - name: full_shape
+    # states: [ 半形, 全形 ]
+  - name: liu_w2c
+    reset: 0
+    states: [ 正常 ,反查 ]
+  - name: extended_charset
+    states: [ 常用, 擴充字集 ]
+    reset: 0
+  - name: simplification
+    states: [ 繁體, 简体 ]
+  - name: zh_tw
+    reset: 1
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+#    - punctuator
+    - selector
+    - navigator
+    - express_editor
+#    - fluency_editor	#  語句流
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - affix_segmentor@mkst
+    - affix_segmentor@liurqry
+    - affix_segmentor@pinyin
+    - affix_segmentor@phonetic
+#    - punct_segmentor
+    - fallback_segmentor
+  translators:
+#    - echo_translator
+#    - punct_translator
+#    - script_translator
+    - table_translator@mkst
+    - table_translator@fixed
+    - table_translator@liurqry
+    - table_translator
+    - script_translator@pinyin
+    - script_translator@phonetic
+
+    - lua_translator@date_translator
+
+  filters:
+    - simplifier
+    - simplifier@liu_w2c	#無蝦米字碼反查
+    - simplifier@zh_tw
+    - uniquifier	#過濾重複的候選字，有可能來自繁簡轉換
+    - reverse_lookup_filter@phonetic_reverse_lookup
+    # - single_char_filter  #單字優先
+
+# abc_segmentor:
+  # extra_tags:
+    # - liurqry
+
+liu_w2c:
+  opencc_config: liu_w2c.json
+  option_name: liu_w2c
+  show_in_comment: true
+  tags: [ pinyin, mkst, phonetic ]
+  tips: all
+
+zh_tw:	#只針對拼音及注音反查進行台灣用語轉換
+  opencc_config: t2tw.json
+  option_name: zh_tw
+  tags: [ pinyin, phonetic ]
+
+simplifier:
+  tips: all	# 簡化字模式下提示對應的傳統漢字
+
+speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyz[];',."
+  delimiter: "`"
+  algebra:
+    - xform/^~(.*)$/$1
+#為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
+
+translator:
+  dictionary: liur.extended
+  db_class: tabledb
+  enable_user_dict: false
+  enable_sentence: false
+  enable_encoder: false
+  enable_charset_filter: true
+  encode_commit_history: false
+  max_phrase_length: 10
+  enable_completion: true
+  comment_format:
+    - xform/^~.*(.)$/>[$1]   #將提示碼改為較美觀的型式
+  disable_user_dict_for_patterns:
+    - "^[',.].*$"
+  initial_quality: 1000
+
+fixed:
+  __include: /translator
+  enable_encoder: true
+  enable_user_dict: true
+  initial_quality: 100
+
+mkst:
+  __include: /translator
+  enable_sentence: true
+  prefix: ';'
+  tips: "〔造詞〕"
+  tag: mkst
+  initial_quality: 10
+
+liurqry:
+  __include: /translator
+  prefix: ";;"
+  suffix: "'"
+  tips: 【反查讀音】
+  closing_tips: 【蝦米】
+  initial_quality: 300	# 調整該編譯器出字優先度
+  tag: liurqry
+
+pinyin:
+  tag: pinyin
+  dictionary: luna_pinyin
+  prefix: "`"
+# 漢語拼音輸入以「`」引導
+  suffix: "'"
+  preedit_format: &pinyin
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+  tips: 【拼音】
+  closing_tips: 【蝦米】
+  initial_quality: 0.2	# 調整該編譯器出字優先度
+
+phonetic:
+  tag: phonetic
+  prefix: "';"
+  suffix: "'"
+  dictionary: terra_pinyin
+  prism: bopomofo_tw
+  preedit_format:	#menu反查之輸入法 顯示
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
+  comment_format:	#menu 提示 字碼 顯示
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
+  tips: 【注音】
+  closing_tips: 【蝦米】
+  initial_quality: 1.1	# 調整該編譯器出字優先度
+
+phonetic_reverse_lookup:
+  tags: [ liurqry ]
+  dictionary: terra_pinyin
+  overwrite_comment: true  # 覆蓋其他提示
+  comment_format:
+    - "xform/e?r5$/er5/"
+    - "xform/iu/iou/"
+    - "xform/ui/uei/"
+    - "xform/ong/ung/"
+    - "xform/yi?/i/"
+    - "xform/wu?/u/"
+    - "xform/iu/v/"
+    - "xform/([jqx])u/$1v/"
+    - "xform/([iuv])n/$1en/"
+    - "xform/zh/Z/"
+    - "xform/ch/C/"
+    - "xform/sh/S/"
+    - "xform/ai/A/"
+    - "xform/ei/I/"
+    - "xform/ao/O/"
+    - "xform/ou/U/"
+    - "xform/ang/K/"
+    - "xform/eng/G/"
+    - "xform/an/M/"
+    - "xform/en/N/"
+    - "xform/er/R/"
+    - "xform/eh/E/"
+    - "xform/([iv])e/$1E/"
+    - "xform/1//"
+    - "xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR2345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˊˇˋ˙|"
+    - xform/ /} {/
+    - xform/^/ {
+    - xform/$/}/
+
+punctuator:
+#  import_preset: default
+#  import_preset: alternative
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+
+  patterns:
+    email: ^[a-z][-_.0-9a-z]*@.*$
+    url: ^(www[.]|https?:|ftp:|mailto:).*$
+    phonetic: "';[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$"
+# 注音反查引導鍵
+    pinyin: "`[a-z']*'?$"
+# 漢語拼音輸入引導鍵
+    mkst: "^;[a-z,.'`]*$"
+#造詞引導
+    liurqry: ";;[a-z']*'?$"
+# 讀音反查引導鍵
+    lua: "``[a-z0-9/:]*'?$"
