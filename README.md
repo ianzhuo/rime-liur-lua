@@ -4,35 +4,30 @@
 ## 功能說明：
 
 ### 中英混輸
->![中英混輸.gif](https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E4%B8%AD%E8%8B%B1%E6%B7%B7%E8%BC%B8.gif)
-
 透過空白鍵上中文字及中文符號，ENTER鍵上英文字及英文符號
+><img div="中英混輸.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E4%B8%AD%E8%8B%B1%E6%B7%B7%E8%BC%B8.gif" width="300">
 
 ### 取消碼長限制
->![取消碼長限制.gif](https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E5%8F%96%E6%B6%88%E7%A2%BC%E9%95%B7%E9%99%90%E5%88%B6.gif)
-
 直接輸入 www.google.com.tw 按ENTER鍵，可直接上字無需切換輸入法
+><img div="取消碼長限制.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E5%8F%96%E6%B6%88%E7%A2%BC%E9%95%B7%E9%99%90%E5%88%B6.gif" width="300">
 
 ### SHIFT鍵切換中英輸入
->![中英切換.gif](https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E4%B8%AD%E8%8B%B1%E5%88%87%E6%8F%9B.gif)
-
 SHIFT鍵可切換中英輸入，並且將組字區內容直接上字
+><img div="中英切換.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E4%B8%AD%E8%8B%B1%E5%88%87%E6%8F%9B.gif" width="300">
 
 ### 即時簡繁轉換
->![簡繁體即時轉換.gif](https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E7%B0%A1%E7%B9%81%E9%AB%94%E5%8D%B3%E6%99%82%E8%BD%89%E6%8F%9B.gif)
-
 可利用Ctrl+.(句點)進行即時簡繁體切換
+><img div="簡繁體即時轉換.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E7%B0%A1%E7%B9%81%E9%AB%94%E5%8D%B3%E6%99%82%E8%BD%89%E6%8F%9B.gif" width="300">
+
 ### 注音模式
 以「';」鍵引導可進行注音輸入
 ### 拼音模式
 以「`」鍵(上排數字鍵1左邊)引導可進行拼音輸入
-
->![注音拼音模式.gif](https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E6%B3%A8%E9%9F%B3%E6%8B%BC%E9%9F%B3%E6%A8%A1%E5%BC%8F.gif)
+><img div="注音拼音模式.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E6%B3%A8%E9%9F%B3%E6%8B%BC%E9%9F%B3%E6%A8%A1%E5%BC%8F.gif" width="300">
 
 ### 造詞模式
 以「;」鍵引導進入造詞模式(透過 「\`」 來分詞，非必須，可視情形輸入)，空白鍵上字後即完成造詞。
-
->![造詞01.gif](https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E9%80%A0%E8%A9%9E01.gif)
+><img div="造詞01.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E9%80%A0%E8%A9%9E01.gif" width="300">
 
 >新詞於第一次被使用後，即會列在候選字中。
 
