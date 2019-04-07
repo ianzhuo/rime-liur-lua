@@ -68,15 +68,15 @@ SHIFT鍵可切換中英輸入，並且將組字區內容直接上字
 ### 複合型編碼反查
 於一般、注音、拼音、造詞模式時，按下`Ctrl+'`鍵，可開啟動態反查編碼功能
 並且支援以詞句為單位之反查行為
-><img div="編碼反查.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E7%B7%A8%E7%A2%BC%E5%8F%8D%E6%9F%A5.gif" width="300">
+><img div="編碼反查.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E7%B7%A8%E7%A2%BC%E5%8F%8D%E6%9F%A5.gif" width="600">
 
 ### 讀音反查
 以 `;;`(分號鍵) 鍵引導進入讀音反查，輸入嘸蝦米編碼，可以反查該字讀音。
-><img div="讀音反查.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E8%AE%80%E9%9F%B3%E5%8F%8D%E6%9F%A5.gif" width="300">
+><img div="讀音反查.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E8%AE%80%E9%9F%B3%E5%8F%8D%E6%9F%A5.gif" width="600">
 
 ## **擴充模式
 以「``」鍵引導啟動擴充模式，
 可利用Lua語言，於使用者文件夾中`rime.lua`自定義擴充功能
 
 >目前提供日期轉換器功能，快速轉換中文日期
-><img div="擴充模式.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E6%93%B4%E5%85%85%E6%A8%A1%E5%BC%8F.gif" width="300">
+><img div="擴充模式.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E6%93%B4%E5%85%85%E6%A8%A1%E5%BC%8F.gif" width="600">
