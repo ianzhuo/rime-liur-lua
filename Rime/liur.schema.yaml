@@ -80,7 +80,7 @@ liu_w2c:
   opencc_config: liu_w2c.json
   option_name: liu_w2c
   show_in_comment: true
-  tags: [ pinyin, mkst, phonetic ]
+  tags: [ abc, pinyin, mkst, phonetic ]
   tips: all
 
 zh_tw:	#只針對拼音及注音反查進行台灣用語轉換
