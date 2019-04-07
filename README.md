@@ -1,7 +1,8 @@
-# rime-liur-lua
+ rime-liur-lua
+----------
 >基於RIME輸入法設計的無蝦米方案
 
-## 功能說明：
+[TOC]
 
 ### 中英混輸
 透過空白鍵上中文字及中文符號，ENTER鍵上英文字及英文符號
@@ -28,6 +29,8 @@ SHIFT鍵可切換中英輸入，並且將組字區內容直接上字
 ### 造詞模式
 以「;」鍵引導進入造詞模式(透過 「\`」 來分詞，非必須，可視情形輸入)，空白鍵上字後即完成造詞。
 ><img div="造詞01.gif" src="https://raw.githubusercontent.com/ianzhuo/ImageCollection/master/%E9%80%A0%E8%A9%9E01.gif" width="600">
+
+>造詞上限為10字
 
 >新詞於第一次被使用後，即會列在候選字中。
 
