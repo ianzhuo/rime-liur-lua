@@ -6,12 +6,12 @@ PROGRAM=$(basename "${BASH_SOURCE[0]}")
 if [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]]
 then
 	# TODO: Implement for Ubuntu environment
-	RIME_CFG_PATH=
 	echo "Not yet implemented for Ubuntu"
 	exit 1
 elif [[ "$OSTYPE" =~ ^darwin ]]
 then
 	RIME_CFG_PATH=$HOME/Library/Rime
+	RIME_APP="/Library/Input Methods/Squirrel.app"
 else
 	echo "Unsupported OS"
 	exit 1
@@ -57,6 +57,10 @@ fi
 
 while (( "$#" )); do
 	case "$1" in
+		-i|--install)
+			install
+			shift
+			;;
 		-u|--uninstall)
 			uninstall
 			shift
