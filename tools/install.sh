@@ -25,24 +25,22 @@ HELP_MSG="
 Usage: ${PROGRAM} [-uh] install Open Xiami configuration for RIME framework
 
 Options
-  -l, --lua-librime - [required sudo] Swap precompiled librime with lua support at:
-		 $RIME_APP/Contents/Frameworks/librime.1.dylib with a backup as
-		 $RIME_APP/Contents/Frameworks/librime.1.old
-  -i, --install     - Install configuration files to $RIME_CFG_PATH
-  -u, --uninstall   - Remove relative files under $RIME_CFG_PATH
-  -h, --help        - This message
+  -p, --purge     - [Warning] Remove folder $RIME_CFG_PATH
+  -i, --install   - Install configuration files to $RIME_CFG_PATH
+  -u, --uninstal  - Remove relative files under $RIME_CFG_PATH
+  -h, --help      - This message
 "
 
 function log_copy()
 {
 	echo "(COPY) $@"
-	cp "$@"
+	cp -r "$@"
 }
 
 function log_remove()
 {
 	echo "(DEL) $@"
-	rm "$@"
+	rm -r "$@"
 }
 
 function log_move()
@@ -59,25 +57,21 @@ function log_link()
 
 function install()
 {
-	for cfgfile in $REPO_PATH/Rime/*.yaml; do
+	for cfgfile in $REPO_PATH/Rime/{*.yaml,*.lua,opencc}; do
 		log_copy $cfgfile $RIME_CFG_PATH
 	done
-
-	log_copy -r $REPO_PATH/Rime/opencc $RIME_CFG_PATH
 }
 
 function uninstall()
 {
-	for cfgfile in $REPO_PATH/Rime/*.yaml; do
+	for cfgfile in $REPO_PATH/Rime/{*.yaml,*.lua,opencc}; do
 		log_remove $RIME_CFG_PATH/$(basename $cfgfile)
 	done
-
-	log_remove -r $RIME_CFG_PATH/opencc
 }
 
-function replace_librime()
+function purge()
 {
-	echo "This function is not yet implemented"
+	log_remove $RIME_CFG_PATH
 }
 
 if [[ $# -eq 0 ]]
@@ -88,8 +82,8 @@ fi
 
 while (( "$#" )); do
 	case "$1" in
-		-l|--lua-library)
-			replace_librime
+		-p|--purge)
+			purge
 			shift
 			;;
 		-i|--install)
