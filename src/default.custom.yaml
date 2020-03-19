@@ -1,9 +1,3 @@
-customization:
-  distribution_code_name: Weasel
-  distribution_version: 0.11.1
-  generator: "Rime::SwitcherSettings"
-  modified_time: "Tue Jun  5 12:55:24 2018"
-  rime_version: 1.3.0
 patch:
   menu:
     alternative_select_keys: "0123456789"	#重碼選擇鍵，如沒有寫-預設 ctrl+123456789

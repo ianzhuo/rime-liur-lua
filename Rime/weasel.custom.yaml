@@ -1,5 +1,0 @@
-patch:
-  # app_options/gvim.exe:  # 程序名字全用小寫字母
-    # ascii_mode: true
-  # "switches/@0/reset": 1	# 1=預設英文輸入，0=中文
-  # "style/display_tray_icon": true  # 顯示托盤圖標
